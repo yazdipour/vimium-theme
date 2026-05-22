@@ -1,0 +1,60 @@
+/* --- VOMNIBAR (The Search Bar) --- */
+#vomnibar {
+  /* 85% opacity dark gray for the "Acrylic" feel */
+  background: rgba(25, 25, 25, 0.85) !important;
+  /* We add the blur, though browsers may ignore it for the underlying page */
+  backdrop-filter: blur(12px) !important; 
+  -webkit-backdrop-filter: blur(12px) !important;
+  
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 50px rgba(0,0,0,0.6) !important;
+  animation: show 200ms cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+#vomnibar input {
+  color: #ffffff !important;
+  background: transparent !important;
+  border: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 22px !important;
+  height: 60px !important;
+  padding: 15px 25px !important;
+  box-shadow: none !important;
+}
+
+/* Make the separator line subtle and translucent */
+#vomnibar .vomnibarSearchArea {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: transparent !important;
+}
+
+#vomnibar ul {
+  background: transparent !important;
+  padding: 10px !important;
+  margin: 0 !important;
+}
+
+#vomnibar li {
+  padding: 12px 20px !important;
+  border-bottom: none !important;
+  border-radius: 8px;
+  color: #a0a0a0;
+}
+
+/* Ensure the URL text doesn't clash with the see-through background */
+#vomnibar .vomnibarUrl {
+  color: #6e6e6e !important;
+  margin-left: 10px;
+}
+
+/* Selected item needs to be more opaque to be readable */
+#vomnibar li.vomnibarSelected {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+#vomnibar li .vomnibarMatch {
+  color: #FF6363 !important;
+  font-weight: bold;
+}
