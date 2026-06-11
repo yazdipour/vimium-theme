@@ -1,0 +1,204 @@
+/* ==========================================================================
+   Raycast theme for Vimium C
+   --------------------------------------------------------------------------
+   Paste this whole file into:  Vimium C Options → Custom CSS for Vimium C UI
+   Then, in "Vomnibar settings" on the same page:
+     1. add  dark  to "styles", e.g.  "styles": "mono-url dark"
+        (or enable "Auto switch between light and dark mode")
+     2. set  "sizes": "84 20 50 40"
+        (bar height / list chrome / item height / panel width % — tweak to taste)
+   ========================================================================== */
+
+
+/* #ui */
+/* ---- Link hints: Raycast-style dark pills with the coral accent ---------- */
+.LH, .D > .LH {
+  background: rgba(25, 25, 25, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  padding: 2.5px 5px;
+  font: bold 12px/1.1 -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", Inter, sans-serif;
+  color: #f2f2f2;
+  text-shadow: none;
+}
+
+/* Matched (already typed) hint characters → Raycast coral */
+.LH .MC, .D > .LH .MC {
+  color: #ff6363;
+  text-shadow: none;
+}
+
+/* ---- HUD (the small status popup, e.g. "No matches") --------------------- */
+.HUD {
+  border-radius: 10px;
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", Inter, sans-serif;
+  color: #f2f2f2;
+}
+.HUD:after, .HUD.D:after {
+  background: rgba(25, 25, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+
+/* #omni */
+/* ---- Vomnibar panel ------------------------------------------------------ */
+body {
+  background: rgba(25, 25, 25, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.6);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+               "Segoe UI", Inter, sans-serif;
+}
+/* kill the default hairline frame drawn via ::after */
+body::after { border: none; }
+
+/* ---- Search bar ---------------------------------------------------------- */
+#bar {
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px 12px 0 0;
+  height: 44px;
+  padding: 10px 14px;
+}
+#bar.empty { border-radius: 12px; border: none; }
+
+#input {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #f2f2f2;
+  caret-color: #ff6363;
+  font-size: 19px;
+  font-weight: 400;
+  height: 44px;
+  padding: 4px 2px;
+  letter-spacing: 0.1px;
+}
+#input::placeholder { color: rgba(255, 255, 255, 0.35); }
+#input::selection {
+  background: rgba(255, 99, 99, 0.35);
+  color: #fff;
+}
+
+/* toolbar buttons (dark-mode toggle / close) */
+#toolbar { color: rgba(255, 255, 255, 0.35); top: 21px; }
+.button { border-radius: 6px; }
+.button:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---- Suggestion list ----------------------------------------------------- */
+#list {
+  background: transparent;
+  border-radius: 0 0 12px 12px;
+  padding: 8px;
+}
+
+.item {
+  background: transparent;
+  border: none;               /* no separators — Raycast uses clean rows   */
+  border-radius: 8px;
+  height: 48px;
+  margin: 0 0 2px;
+  padding: 6px 10px 0;
+}
+.b { border-radius: 8px; height: 48px; }
+
+/* hover + keyboard selection: subtle translucent highlight */
+.item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: none;
+}
+.p { border-color: transparent; }
+.item.s, .item.s:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+}
+
+/* ---- Row content --------------------------------------------------------- */
+.top {
+  font: 500 14.5px/22px -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", Inter, sans-serif;
+  height: 22px;
+  color: #ededed;
+}
+.title { color: #ededed; }
+
+.icon {
+  --vc-c: rgba(255, 255, 255, 0.45);
+  margin-top: 3px;
+}
+
+.label, .time {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 12px;
+}
+
+.bottom { height: 16px; line-height: 16px; margin-left: 21px; }
+
+/* URLs / secondary text */
+a {
+  color: rgba(255, 255, 255, 0.40);
+  font: 12px/16px -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", Inter, sans-serif;
+}
+.mono-url a {
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+}
+
+/* matched query characters → coral accent instead of bold black */
+match {
+  color: #ff6363;
+  font-weight: 600;
+}
+.title > match { text-decoration: none; }
+
+/* the "press Alt+number" badge */
+.alt .alt-index::after {
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+  color: #f2f2f2;
+}
+
+
+/* #find */
+/* ---- Find bar (inside its iframe) ---------------------------------------- */
+body {
+  background: rgba(25, 25, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 10px;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #f2f2f2;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+               "Segoe UI", Inter, sans-serif;
+}
+input, #i {
+  background: transparent;
+  border: none;
+  caret-color: #ff6363;
+  color: #f2f2f2;
+  font-size: 14px;
+  outline: none;
+}
+#s, .状态, span { color: rgba(255, 255, 255, 0.45); }
+
+
+/* #find:selection */
+/* ---- Highlight of the current find match on the page ---------------------- */
+::selection {
+  background: rgba(255, 99, 99, 0.45) !important;
+  color: #fff !important;
+}
